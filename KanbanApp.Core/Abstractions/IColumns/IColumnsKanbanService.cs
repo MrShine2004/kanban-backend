@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 public interface IColumnsKanbanService
 {
 	// Метод для получения всех колонок канбан-доски
-	Task<List<Column>> GetAllColumnsKanban();
+	Task<List<ColumnKanban>> GetAllColumnsKanban();
 
 	// Метод для создания новой колонки
-	Task<Guid> CreateColumnKanban(Column column);
+	Task<Guid> CreateColumnKanban(ColumnKanban columnKanban);
 
 	// Метод для обновления существующей колонки по ID
 	Task<Guid> UpdateColumnKanban(Guid id, string name, int order);
@@ -21,5 +21,5 @@ public interface IColumnsKanbanService
 	Task UpdateColumnsOrder(List<Guid> orderedColumnIds);
 
 	// Метод для получения колонок по ID доски
-	Task<List<Column>> GetColumnsByBoardId(Guid boardId);
+	Task<List<ColumnKanban>> GetColumnsByBoardId(Guid boardId);
 }

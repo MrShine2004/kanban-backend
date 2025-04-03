@@ -3,6 +3,7 @@ using System;
 using KanbanApp.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KanbanApp.DataAccess.Migrations
 {
     [DbContext(typeof(KanbanAppDbContext))]
-    partial class KanbanAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241215133729_Kanban")]
+    partial class Kanban
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,8 +115,11 @@ namespace KanbanApp.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("AssignedId")
+                    b.Property<Guid?>("AssignedUserId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Assignee")
+                        .HasColumnType("text");
 
                     b.Property<Guid>("ColumnId")
                         .HasColumnType("uuid");
@@ -131,7 +137,7 @@ namespace KanbanApp.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssignedId");
+                    b.HasIndex("AssignedUserId");
 
                     b.HasIndex("ColumnId");
 
@@ -162,9 +168,9 @@ namespace KanbanApp.DataAccess.Migrations
 
             modelBuilder.Entity("TaskKanbanEntity", b =>
                 {
-                    b.HasOne("KanbanApp.DataAccess.Entites.UserKanbanEntity", "Assigned")
+                    b.HasOne("KanbanApp.DataAccess.Entites.UserKanbanEntity", "AssignedUser")
                         .WithMany("AssignedTasks")
-                        .HasForeignKey("AssignedId")
+                        .HasForeignKey("AssignedUserId")
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("KanbanApp.DataAccess.Entites.ColumnKanbanEntity", "Column")
@@ -173,7 +179,7 @@ namespace KanbanApp.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Assigned");
+                    b.Navigation("AssignedUser");
 
                     b.Navigation("Column");
                 });
