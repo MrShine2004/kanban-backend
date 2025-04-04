@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KanbanApp.DataAccess.Migrations
 {
     [DbContext(typeof(KanbanAppDbContext))]
-    [Migration("20241216172358_Kanban.0.3")]
-    partial class Kanban03
+    [Migration("20250321105333_init_migration")]
+    partial class init_migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

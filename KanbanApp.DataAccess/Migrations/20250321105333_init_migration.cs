@@ -5,7 +5,7 @@
 namespace KanbanApp.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class Kanban03 : Migration
+    public partial class init_migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

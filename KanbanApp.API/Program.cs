@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -37,7 +36,8 @@ app.UseCors(x =>
 {
 	x.WithHeaders().AllowAnyHeader();
 	x.WithOrigins("http://localhost:3000");
-	x.WithMethods().AllowAnyMethod();
+    x.WithOrigins("https://kanbanapp-64oax09ov-alexs-projects-136f645d.vercel.app/");
+    x.WithMethods().AllowAnyMethod();
 });
 
 if (app.Environment.IsDevelopment())

@@ -26,7 +26,7 @@
 
 		public Guid? AssignedId { get; }
 
-		public static (TaskKanban? TaskKanban, string Error) Create(Guid id, string name, string description, string priority, Guid columnId, Guid? assignedId)
+        public static (TaskKanban? TaskKanban, string Error) Create(Guid id, string name, string description, string priority, Guid columnId, Guid? assignedId)
 		{
 			var error = string.Empty;
 
