@@ -35,12 +35,11 @@ var app = builder.Build();
 app.UseCors(x => x
     .AllowAnyHeader()
     .AllowAnyMethod()
-    .WithOrigins(
-        "http://localhost:3000",
-        "https://kanbanapp-64oax09ov-alexs-projects-136f645d.vercel.app",
-        "https://karibanapp-alexe-projects-136f645dcvercol.app"
+    .SetIsOriginAllowed(origin =>
+        origin.EndsWith(".vercel.app") || // Все поддомены Vercel
+        origin == "http://localhost:3000" // Локальный фронтенд
     )
-    .AllowCredentials()
+    .AllowCredentials() // Если используются куки/авторизация
 );
 
 if (app.Environment.IsDevelopment())
