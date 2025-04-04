@@ -32,13 +32,16 @@ builder.Services.AddScoped<ISubtasksKanbanRepository, SubtaskKanbanRepository>()
 
 var app = builder.Build();
 
-app.UseCors(x =>
-{
-	x.WithHeaders().AllowAnyHeader();
-	x.WithOrigins("http://localhost:3000");
-    x.WithOrigins("https://kanbanapp-64oax09ov-alexs-projects-136f645d.vercel.app/");
-    x.WithMethods().AllowAnyMethod();
-});
+app.UseCors(x => x
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .WithOrigins(
+        "http://localhost:3000",
+        "https://kanbanapp-64oax09ov-alexs-projects-136f645d.vercel.app",
+        "https://karibanapp-alexe-projects-136f645dcvercol.app"
+    )
+    .AllowCredentials()
+);
 
 if (app.Environment.IsDevelopment())
 {
